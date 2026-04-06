@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router";
 import ScoreCircle from "./ScoreCircle";
 
@@ -7,6 +7,7 @@ const ResumeCard = ({
 }: {
   resume: Resume;
 }) => {
+  const [resumeUrl, setResumeUrl] = useState("");
   return (
     <>
       <Link
@@ -29,6 +30,17 @@ const ResumeCard = ({
             <ScoreCircle score={feedback.overallScore} />
           </div>
         </div>
+        {/* {resumeUrl && ( */}
+          <div className="gradient-border animate-in fade-in duration-1000">
+            <div className="w-full h-full">
+              <img
+                src={imagePath}
+                alt="resume"
+                className="w-full h-87.5 max-sm:h-50 object-cover object-top"
+              />
+            </div>
+          </div>
+        {/* )} */}
       </Link>
     </>
   );
