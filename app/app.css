@@ -2,10 +2,14 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* =========================
+   THEME CONFIG
+========================= */
 @theme {
   --font-sans:
     "Mona Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
   --color-dark-200: #475467;
   --color-light-blue-100: #c1d3f81a;
   --color-light-blue-200: #a7bff14d;
@@ -19,16 +23,20 @@
   --color-badge-yellow-text: #73321b;
 }
 
+/* =========================
+   BASE STYLES
+========================= */
 html,
 body {
-  @apply bg-white;
+  @apply bg-white font-sans;
 }
 
 main {
   @apply min-h-screen pt-10;
 }
+
 h1 {
-  @apply max-sm:text-[3rem] text-6xl  text-gradient leading-tight xl:tracking-[-2px] font-semibold;
+  @apply max-sm:text-[3rem] text-6xl leading-tight xl:tracking-[-2px] font-semibold text-gradient;
 }
 
 h2 {
@@ -38,10 +46,8 @@ h2 {
 label {
   @apply text-dark-200;
 }
-input {
-  @apply w-full p-4 inset-shadow rounded-2xl focus:outline-none bg-white;
-}
 
+input,
 textarea {
   @apply w-full p-4 inset-shadow rounded-2xl focus:outline-none bg-white;
 }
@@ -50,37 +56,38 @@ form {
   @apply flex flex-col items-start gap-8 w-full;
 }
 
+/* =========================
+   COMPONENTS
+========================= */
 @layer components {
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#AB8C95] via-[#000000] to-[#8E97C5];
-  }
-  .gradient-border {
-    @apply bg-gradient-to-b from-light-blue-100 to-light-blue-200 p-4 rounded-2xl;
-  }
-  .primary-button {
-    @apply primary-gradient text-white rounded-full px-4 py-2 cursor-pointer w-full;
-  }
   .resume-nav {
-    @apply flex flex-row justify-between items-center p-4 border-b border-gray-200;
+    @apply flex justify-between items-center p-4 border-b border-gray-200;
   }
+
   .resume-summary {
-    @apply flex flex-row items-center justify-center p-4 gap-4;
-    .category {
-      @apply flex flex-row gap-2 items-center bg-gray-50 rounded-2xl p-4 w-full justify-between;
-    }
+    @apply flex items-center justify-center p-4 gap-4;
   }
+
+  .resume-summary .category {
+    @apply flex gap-2 items-center bg-gray-50 rounded-2xl p-4 w-full justify-between;
+  }
+
   .back-button {
-    @apply flex flex-row items-center gap-2 border border-gray-200 rounded-lg p-2 shadow-sm;
+    @apply flex items-center gap-2 border border-gray-200 rounded-lg p-2 shadow-sm;
   }
+
   .auth-button {
     @apply primary-gradient rounded-full py-4 px-8 cursor-pointer w-[600px] max-md:w-full text-3xl font-semibold text-white;
   }
+
   .main-section {
     @apply flex flex-col items-center gap-8 pt-12 max-sm:mx-2 mx-15 pb-5;
   }
+
   .page-heading {
     @apply flex flex-col items-center gap-8 max-w-4xl text-center max-sm:gap-4;
   }
+
   .resumes-section {
     @apply flex flex-wrap max-md:flex-col max-md:gap-4 gap-6 items-start max-md:items-center w-full max-w-[1850px] justify-evenly;
   }
@@ -90,7 +97,7 @@ form {
   }
 
   .resume-card-header {
-    @apply flex flex-row gap-2 justify-between min-h-[110px] max-sm:flex-col items-center max-md:justify-center max-md:items-center;
+    @apply flex gap-2 justify-between min-h-[110px] max-sm:flex-col items-center max-md:justify-center;
   }
 
   .feedback-section {
@@ -98,35 +105,39 @@ form {
   }
 
   .navbar {
-    @apply flex flex-row justify-between items-center bg-white rounded-full p-4 w-full px-10 max-w-[1200px] mx-auto;
+    @apply flex justify-between items-center bg-white rounded-full p-4 w-full px-10 max-w-[1200px] mx-auto;
   }
 
   .score-badge {
-    @apply flex flex-row items-center justify-center py-1 px-2 gap-4 rounded-[96px];
+    @apply flex items-center justify-center py-1 px-2 gap-4 rounded-[96px];
   }
 
   .form-div {
     @apply flex flex-col gap-2 w-full items-start;
   }
 
-  .uplader-drag-area {
+  .uploader-drag-area {
     @apply relative p-8 text-center transition-all duration-700 cursor-pointer bg-white rounded-2xl min-h-[208px];
   }
+
   .uploader-selected-file {
     @apply flex items-center justify-between p-3 bg-gray-50 rounded-2xl;
   }
 }
 
-@utility bg-gradient {
-  background: linear-gradient(to bottom, #f0f4ff 60%, #fa7185cc);
+/* =========================
+   CUSTOM UTILITIES
+========================= */
+@utility text-gradient {
+  @apply bg-clip-text text-transparent bg-linear-to-r from-[#AB8C95] via-[#000000] to-[#8E97C5];
 }
 
-@utility text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#AB8C95] via-[#000000] to-[#8E97C5];
+@utility gradient-border {
+  @apply bg-linear-to-b from-light-blue-100 to-light-blue-200 p-4 rounded-2xl;
 }
 
 @utility gradient-hover {
-  @apply bg-gradient-to-b from-light-blue-100 to-light-blue-200;
+  @apply bg-linear-to-b from-light-blue-100 to-light-blue-200;
 }
 
 @utility primary-gradient {
@@ -139,10 +150,13 @@ form {
 }
 
 @utility inset-shadow {
-  box-shadow: inset 0 0 12px 0 rgba(36, 99, 235, 0.2);
+  box-shadow: inset 0 0 12px rgba(36, 99, 235, 0.2);
   backdrop-filter: blur(10px);
 }
 
+/* =========================
+   ANIMATION
+========================= */
 @keyframes fadeIn {
   from {
     opacity: 0;
