@@ -1,5 +1,5 @@
-import Navbar from "~/components/Navbar";
 import type { Route } from "./+types/home";
+import Navbar from "~/components/Navbar";
 import ResumeCard from "~/components/ResumeCard";
 import { usePuterStore } from "~/lib/puter";
 import { Link, useNavigate } from "react-router";
@@ -38,9 +38,10 @@ export default function Home() {
 
     loadResumes();
   }, []);
+
   return (
     <main className="bg-[url('/images/bg-main.svg')] bg-cover">
-      <Navbar></Navbar>
+      <Navbar />
 
       <section className="main-section">
         <div className="page-heading py-16">
